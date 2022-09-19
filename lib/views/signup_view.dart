@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_login_ui/controller/login_controller.dart';
 import '../views/login_view.dart';
 import '../constants.dart';
 import '../controller/simple_ui_controller.dart';
@@ -40,13 +39,17 @@ class _SignUpViewState extends State<SignUpView> {
       child: Scaffold(
           backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
-          body: LayoutBuilder(
-            builder: (context, constraints) {
-              if (constraints.maxWidth > 600) {
-                return _buildLargeScreen(size, simpleUIController, theme);
-              } else {
-                return _buildSmallScreen(size, simpleUIController, theme);
-              }
+          body: GetBuilder<SimpleUIController>(
+            builder: (simpleUIController) {
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  if (constraints.maxWidth > 600) {
+                    return _buildLargeScreen(size, simpleUIController, theme);
+                  } else {
+                    return _buildSmallScreen(size, simpleUIController, theme);
+                  }
+                },
+              );
             },
           )),
     );
@@ -165,41 +168,40 @@ class _SignUpViewState extends State<SignUpView> {
                 ),
 
                 /// password
-                Obx(
-                  () => TextFormField(
-                    style: kTextFormFieldStyle(),
-                    controller: passwordController,
-                    obscureText: simpleUIController.isObscure.value,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_open),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          simpleUIController.isObscure.value
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          simpleUIController.isObscureActive();
-                        },
+                TextFormField(
+                  style: kTextFormFieldStyle(),
+                  controller: passwordController,
+                  obscureText: simpleUIController.isObscure,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock_open),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        simpleUIController.isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
-                      hintText: 'Password',
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                      ),
+                      onPressed: () {
+                        simpleUIController.isObscureActive();
+                      },
                     ),
-                    // The validator receives the text that the user has entered.
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      } else if (value.length < 7) {
-                        return 'at least enter 6 characters';
-                      } else if (value.length > 13) {
-                        return 'maximum character is 13';
-                      }
-                      return null;
-                    },
+                    hintText: 'Password',
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
                   ),
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    } else if (value.length < 7) {
+                      return 'at least enter 6 characters';
+                    } else if (value.length > 13) {
+                      return 'maximum character is 13';
+                    }
+                    return null;
+                  },
                 ),
+
                 SizedBox(
                   height: size.height * 0.01,
                 ),
@@ -230,7 +232,7 @@ class _SignUpViewState extends State<SignUpView> {
                     passwordController.clear();
                     _formKey.currentState?.reset();
 
-                    simpleUIController.isObscure.value = true;
+                    simpleUIController.isObscure = true;
                   },
                   child: RichText(
                     text: TextSpan(
@@ -243,7 +245,7 @@ class _SignUpViewState extends State<SignUpView> {
                       ],
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
