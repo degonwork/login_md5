@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
+import 'package:responsive_login_ui/controller/address_controller.dart';
 import '../constants.dart';
 import '../controller/login_controller.dart';
 import '../controller/simple_ui_controller.dart';
+import '../routes/routes.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -33,7 +33,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    SimpleUIController simpleUIController = Get.find<SimpleUIController>();
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -256,19 +255,24 @@ class _LoginViewState extends State<LoginView> {
         onPressed: () {
           // Validate returns true if the form is valid, or false otherwise.
           if (_formKey.currentState!.validate()) {
-            String userName = nameController.text.trim();
-            String password = passwordController.text.trim();
+            //   String userName = nameController.text.trim();
+            //   String password = passwordController.text.trim();
 
-            print("Before encode: " + password);
-            print("Before encode: " + userName);
+            //   print("Before encode: " + password);
+            //   print("Before encode: " + userName);
 
-            String passwordEncode = loginController.generateMd5(password);
-            String userNameEnCode = loginController.generateMd5(userName);
+            //   String passwordEncode = loginController.generateMd5(password);
+            //   String userNameEnCode = loginController.generateMd5(userName);
 
-            print("After encode: " + passwordEncode);
-            print("After encode: " + userNameEnCode);
+            //   print("After encode: " + passwordEncode);
+            //   print("After encode: " + userNameEnCode);
+
+            Get.offNamed(Routes.country);
+            Get.find<AddressController>().provinceDBProcessed();
           }
         },
+        // },
+        // },
         child: const Text('Login'),
       ),
     );
