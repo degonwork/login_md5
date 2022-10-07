@@ -1,0 +1,17 @@
+{
+    "language": "Tiếng Việt",
+    "login": "Đăng Nhập",
+    "welcome": "Chào mừng trở lại {username}",
+    "username_or_gmail": "Tên đăng nhập hoặc Gmail",
+    "password": "Mật khẩu",
+    "decriptionLogin": "Tạo tài khoản có nghĩa là bạn đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư của chúng tôi",
+    "noAcount": "Bạn không có tài khoản?",
+    "signUp": "Đăng ký",
+    "titleSignup": "Tạo tài khoản",
+    "username": "Tên đăng nhập",
+    "gmail": "Gmail",
+    "decriptionSignUp": "Tạo tài khoản có nghĩa là bạn đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư của chúng tôi",
+    "haveAcount": "Bạn đã có tài khoản?",
+    "validateUserName": "Vui lòng nhập tên đăng nhập"
+  
+}

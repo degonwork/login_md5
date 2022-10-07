@@ -313,7 +313,7 @@ class AddressView extends StatelessWidget {
                           print("Address is: " + addressString);
                         }
                       },
-                      child: const Text('Submit'),
+                      child: const Text('Agree'),
                     ),
                   ),
                 );

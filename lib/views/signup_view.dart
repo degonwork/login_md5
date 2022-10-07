@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../views/login_view.dart';
+import '../routes/routes.dart';
 import '../constants.dart';
 import '../controller/simple_ui_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key? key}) : super(key: key);
@@ -91,7 +91,7 @@ class _SignUpViewState extends State<SignUpView> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Text(
-            'Sign Up',
+            AppLocalizations.of(context)!.signUp,
             style: kLoginTitleStyle(size),
           ),
         ),
@@ -101,7 +101,7 @@ class _SignUpViewState extends State<SignUpView> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Text(
-            'Create Account',
+            AppLocalizations.of(context)!.titleSignup,
             style: kLoginSubtitleStyle(size),
           ),
         ),
@@ -117,10 +117,10 @@ class _SignUpViewState extends State<SignUpView> {
                 /// username
                 TextFormField(
                   style: kTextFormFieldStyle(),
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person),
-                    hintText: 'Username',
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.person),
+                    hintText: AppLocalizations.of(context)!.username,
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
@@ -129,7 +129,7 @@ class _SignUpViewState extends State<SignUpView> {
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter username';
+                      return AppLocalizations.of(context)!.validateUserName;
                     } else if (value.length < 4) {
                       return 'at least enter 4 characters';
                     } else if (value.length > 13) {
@@ -146,10 +146,10 @@ class _SignUpViewState extends State<SignUpView> {
                 TextFormField(
                   style: kTextFormFieldStyle(),
                   controller: emailController,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.email_rounded),
-                    hintText: 'gmail',
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.email_rounded),
+                    hintText: AppLocalizations.of(context)!.username,
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
@@ -184,7 +184,7 @@ class _SignUpViewState extends State<SignUpView> {
                         simpleUIController.isObscureActive();
                       },
                     ),
-                    hintText: 'Password',
+                    hintText: AppLocalizations.of(context)!.password,
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
@@ -206,7 +206,7 @@ class _SignUpViewState extends State<SignUpView> {
                   height: size.height * 0.01,
                 ),
                 Text(
-                  'Creating an account means you\'re okay with our Terms of Services and our Privacy Policy',
+                  AppLocalizations.of(context)!.decriptionSignUp,
                   style: kLoginTermsAndPrivacyStyle(size),
                   textAlign: TextAlign.center,
                 ),
@@ -223,10 +223,7 @@ class _SignUpViewState extends State<SignUpView> {
                 /// Navigate To Login Screen
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (ctx) => const LoginView()));
+                    Get.toNamed(Routes.login);
                     nameController.clear();
                     emailController.clear();
                     passwordController.clear();
@@ -236,11 +233,11 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   child: RichText(
                     text: TextSpan(
-                      text: 'Already have an account?',
+                      text: AppLocalizations.of(context)!.haveAcount,
                       style: kHaveAnAccountStyle(size),
                       children: [
                         TextSpan(
-                            text: " Login",
+                            text: " ${AppLocalizations.of(context)!.login}",
                             style: kLoginOrSignUpTextStyle(size)),
                       ],
                     ),
@@ -274,7 +271,7 @@ class _SignUpViewState extends State<SignUpView> {
             // ... Navigate To your Home Page
           }
         },
-        child: const Text('Sign up'),
+        child: Text(AppLocalizations.of(context)!.signUp),
       ),
     );
   }

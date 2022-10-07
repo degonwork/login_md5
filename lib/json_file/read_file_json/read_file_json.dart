@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:responsive_login_ui/data/model/district.dart';
 import 'package:responsive_login_ui/data/model/province.dart';
-import '../data/model/ward.dart';
+import '../../data/model/ward.dart';
 
 Future<List<Province>?> readFileProvinceJson(String path) async {
   String response = await rootBundle.loadString(path);

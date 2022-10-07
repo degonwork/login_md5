@@ -5,6 +5,7 @@ import '../constants.dart';
 import '../controller/login_controller.dart';
 import '../controller/simple_ui_controller.dart';
 import '../routes/routes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -100,7 +101,7 @@ class _LoginViewState extends State<LoginView> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Text(
-            'Login',
+            AppLocalizations.of(context)!.login,
             style: kLoginTitleStyle(size),
           ),
         ),
@@ -110,7 +111,7 @@ class _LoginViewState extends State<LoginView> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Text(
-            'Welcome Back Catchy',
+            AppLocalizations.of(context)!.welcome("Catchy"),
             style: kLoginSubtitleStyle(size),
           ),
         ),
@@ -126,9 +127,9 @@ class _LoginViewState extends State<LoginView> {
                 /// username or Gmail
                 TextFormField(
                   style: kTextFormFieldStyle(),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     prefixIcon: Icon(Icons.person),
-                    hintText: 'Username or Gmail',
+                    hintText: AppLocalizations.of(context)!.username_or_gmail,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
@@ -167,7 +168,7 @@ class _LoginViewState extends State<LoginView> {
                         simpleUIController.isObscureActive();
                       },
                     ),
-                    hintText: 'Password',
+                    hintText: AppLocalizations.of(context)!.password,
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
@@ -189,7 +190,7 @@ class _LoginViewState extends State<LoginView> {
                   height: size.height * 0.01,
                 ),
                 Text(
-                  'Creating an account means you\'re okay with our Terms of Services and our Privacy Policy',
+                  AppLocalizations.of(context)!.decriptionLogin,
                   style: kLoginTermsAndPrivacyStyle(size),
                   textAlign: TextAlign.center,
                 ),
@@ -206,7 +207,7 @@ class _LoginViewState extends State<LoginView> {
                 /// Navigate To Login Screen
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    Get.toNamed(Routes.signUp);
                     nameController.clear();
                     passwordController.clear();
                     _formKey.currentState?.reset();
@@ -214,11 +215,11 @@ class _LoginViewState extends State<LoginView> {
                   },
                   child: RichText(
                     text: TextSpan(
-                      text: 'Don\'t have an account?',
+                      text: AppLocalizations.of(context)!.noAcount,
                       style: kHaveAnAccountStyle(size),
                       children: [
                         TextSpan(
-                          text: " Sign up",
+                          text: " ${AppLocalizations.of(context)!.signUp}",
                           style: kLoginOrSignUpTextStyle(
                             size,
                           ),
@@ -269,7 +270,7 @@ class _LoginViewState extends State<LoginView> {
           // }
         },
         // },
-        child: const Text('Login'),
+        child: Text(AppLocalizations.of(context)!.login),
       ),
     );
   }

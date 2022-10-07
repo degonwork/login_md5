@@ -1,0 +1,63 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The current Language"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Title Login"
+  },
+  "welcome": "Welcome Back {username}",
+  "@welcome": {
+    "description": "WelCome to App",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "username_or_gmail": "Username or Gmail",
+  "@username_or_gmail": {
+    "description": "Text field username or gmail"
+  },
+  "password": "PassWord",
+  "@password": {
+    "description": "Text field password"
+  },
+  "decriptionLogin": "Creating an account means you're okay with our Terms of Services and our Privacy Policy",
+  "@decriptionLogin": {
+    "description": "decription login"
+  },
+  "noAcount": "Don't have an account?",
+  "@noAcount": {
+    "description": "no account?"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Go to Sign up page"
+  },
+  "titleSignup": "Create account",
+  "@titleSignup": {
+    "description": "Title Sign up"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Text field username"
+  },
+  "gmail": "Gmail",
+  "@gmail": {
+    "description": "Text field Gmail"
+  },
+  "decriptionSignUp": "Creating an account means you're okay with our Terms of Services and our Privacy Policy",
+  "@decriptionSignUp": {
+    "description": "Decription SignUp"
+  },
+  "haveAcount": "Already have an account?",
+  "@haveAcount": {
+    "description": "Don't have no acount"
+  },
+  "validateUserName": "Please enter username",
+  "@validateUserName": {
+    "description": "validate username"
+  }
+}

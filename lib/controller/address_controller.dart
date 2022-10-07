@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:responsive_login_ui/data/model/district.dart';
 import 'package:responsive_login_ui/data/model/province.dart';
 import 'package:responsive_login_ui/data/repository/address_repo.dart';
-import 'package:responsive_login_ui/read_file_json/read_file_json.dart';
+import 'package:responsive_login_ui/json_file/read_file_json/read_file_json.dart';
 import '../data/model/ward.dart';
 import '../data/provider/db/address_database.dart';
 
