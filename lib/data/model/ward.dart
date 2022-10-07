@@ -1,24 +1,13 @@
 final String tableWard = 'ward';
 
 class WardField {
-  static final List<String> values = [
-    name,
-    type,
-    slug,
-    name_with_type,
-    path,
-    path_with_type,
-    code,
-    parent_code
-  ];
+  static final List<String> values = [name, type, slug, path, id, parent_id];
   static final String name = 'name';
   static final String type = 'type';
   static final String slug = 'slug';
-  static final String name_with_type = 'name_with_type';
   static final String path = 'path';
-  static final String path_with_type = 'path_with_type';
-  static final String code = 'code';
-  static final String parent_code = 'parent_code';
+  static final String id = 'id';
+  static final String parent_id = 'parent_id';
 }
 
 class Ward {
@@ -26,51 +15,47 @@ class Ward {
     required this.name,
     required this.type,
     required this.slug,
-    required this.name_with_type,
     required this.path,
-    required this.path_with_type,
-    required this.code,
-    required this.parent_code,
+    required this.id,
+    required this.parent_id,
   });
 
   final String? name;
-  final TypeWard? type;
+  final String? type;
   final String? slug;
-  final String? name_with_type;
   final String? path;
-  final String? path_with_type;
-  final int? code;
-  final int? parent_code;
+  final String? id;
+  final String? parent_id;
 
   static Ward fromJson(Map<String, dynamic> json) => Ward(
         name: json["name"],
         type: typeValues.map[json["type"]],
         slug: json["slug"],
-        name_with_type: json["name_with_type"],
         path: json["path"],
-        path_with_type: json["path_with_type"],
-        code: json["code"],
-        parent_code: json["parent_code"],
+        id: json["code"] ?? json["id"],
+        parent_id: json["parent_code"] ?? json["parent_id"],
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "type": typeValues.reverse[type],
         "slug": slug,
-        "name_with_type": name_with_type,
         "path": path,
-        "path_with_type": path_with_type,
-        "code": code,
-        "parent_code": parent_code,
+        "id": id,
+        "parent_id": parent_id,
       };
 }
 
-enum TypeWard { PHUONG, THI_TRAN, XA }
+Map<String, dynamic> typeWard = {
+  "phuong": "Phường",
+  "thi-tran": "Thị trấn",
+  "xa": "Xã",
+};
 
 final typeValues = EnumValues({
-  "phuong": TypeWard.PHUONG,
-  "thi-tran": TypeWard.THI_TRAN,
-  "xa": TypeWard.XA,
+  "phuong": typeWard["phuong"],
+  "thi-tran": typeWard["thi-tran"],
+  "xa": typeWard["xa"],
 });
 
 class EnumValues<T> {

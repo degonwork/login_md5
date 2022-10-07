@@ -1,6 +1,6 @@
 import '../model/district.dart';
 import '../model/province.dart';
-import '../model/wards.dart';
+import '../model/ward.dart';
 import '../provider/api/api.dart';
 import '../provider/db/address_database.dart';
 
@@ -14,20 +14,26 @@ class AddressRepo {
     for (int i = 0; i < provinces!.length; i++) {
       if (provinces[i] is Province) {
         Province? province;
-        province = await readProvinceFromDB(code: provinces[i].code);
+        province = await readProvinceByID(id: provinces[i].id);
         if (province == null) {
-          await AddressDatabase.instance.createProvince(provinces[i]);
+          await AddressDatabase.instance.createProvinceToDB(provinces[i]);
         }
       }
     }
   }
 
-  Future<Province?> readProvinceFromDB({int? code}) async {
-    Province? province = await AddressDatabase.instance.readProvince(code!);
+  Future<Province?> readProvinceByID({String? id}) async {
+    Province? province = await AddressDatabase.instance.readProvinceByID(id);
     return province;
   }
 
-  Future<List<Province>> readAllProvincesFromDB() async {
+  Future<Province?> readProvinceByName(String? name) async {
+    Province? province =
+        await AddressDatabase.instance.readProvinceByName(name);
+    return province;
+  }
+
+  Future<List<Province>> readAllProvinces() async {
     List<Province> provinces = await AddressDatabase.instance.readAllProvince();
     return provinces;
   }
@@ -37,29 +43,34 @@ class AddressRepo {
     for (int i = 0; i < districts!.length; i++) {
       if (districts[i] is District) {
         District? district;
-        district = await readDistrictFromDB(code: districts[i].code);
+        district = await readDistrictByID(id: districts[i].id);
         if (district == null) {
-          await AddressDatabase.instance.createDistrict(districts[i]);
+          await AddressDatabase.instance.createDistrictToDB(districts[i]);
         }
       }
     }
   }
 
-  Future<District?> readDistrictFromDB({int? code}) async {
-    District? district = await AddressDatabase.instance.readDistrict(code!);
+  Future<District?> readDistrictByID({String? id}) async {
+    District? district = await AddressDatabase.instance.readDistrictByID(id);
     return district;
   }
 
-  Future<List<District>> readAllDistrictFromDB() async {
+  Future<District?> readDistrictByName(String? name) async {
+    District? district =
+        await AddressDatabase.instance.readDistrictByName(name);
+    return district;
+  }
+
+  Future<List<District>> readAllDistrict() async {
     List<District> districts = await AddressDatabase.instance.readAllDistrict();
     return districts;
   }
 
-  Future<void> deleteDistrictTable() async {
-    List<District> districts = await readAllDistrictFromDB();
-    if (districts.isNotEmpty) {
-      await AddressDatabase.instance.deleteDistrict();
-    }
+  Future<List<District>> readAllDistrictByParentID(String provinceId) async {
+    List<District> districts =
+        await AddressDatabase.instance.readAllDistrictByParentID(provinceId);
+    return districts;
   }
 
   // Ward
@@ -67,28 +78,27 @@ class AddressRepo {
     for (int i = 0; i < wards!.length; i++) {
       if (wards[i] is Ward) {
         Ward? ward;
-        ward = await readWardFromDB(code: wards[i].code);
+        ward = await readWardByID(id: wards[i].id);
         if (ward == null) {
-          await AddressDatabase.instance.createWard(wards[i]);
+          await AddressDatabase.instance.createWardToDB(wards[i]);
         }
       }
     }
   }
 
-  Future<Ward?> readWardFromDB({int? code}) async {
-    Ward? ward = await AddressDatabase.instance.readWard(code!);
+  Future<Ward?> readWardByID({String? id}) async {
+    Ward? ward = await AddressDatabase.instance.readWardByID(id!);
     return ward;
   }
 
-  Future<List<Ward>> readAllWardFromDB() async {
-    List<Ward> wards = await AddressDatabase.instance.readAllWard();
-    return wards;
+  Future<Ward?> readWardByname(String? name) async {
+    Ward? ward = await AddressDatabase.instance.readWardByName(name);
+    return ward;
   }
 
-  Future<void> deleteWardTable() async {
-    List<Ward> wards = await readAllWardFromDB();
-    if (wards.isNotEmpty) {
-      await AddressDatabase.instance.deleteWard();
-    }
+  Future<List<Ward>> readAllWardByParentID(String districtId) async {
+    List<Ward> wards =
+        await AddressDatabase.instance.readAllWardByParentID(districtId);
+    return wards;
   }
 }

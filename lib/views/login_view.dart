@@ -17,7 +17,6 @@ class _LoginViewState extends State<LoginView> {
   LoginController loginController = Get.find<LoginController>();
 
   TextEditingController nameController = TextEditingController();
-  // TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -25,7 +24,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   void dispose() {
     nameController.dispose();
-    // emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -210,7 +208,6 @@ class _LoginViewState extends State<LoginView> {
                   onTap: () {
                     Navigator.pop(context);
                     nameController.clear();
-                    // emailController.clear();
                     passwordController.clear();
                     _formKey.currentState?.reset();
                     simpleUIController.isObscure = true;
@@ -254,24 +251,23 @@ class _LoginViewState extends State<LoginView> {
         ),
         onPressed: () {
           // Validate returns true if the form is valid, or false otherwise.
-          if (_formKey.currentState!.validate()) {
-            //   String userName = nameController.text.trim();
-            //   String password = passwordController.text.trim();
+          // if (_formKey.currentState!.validate()) {
+          //   String userName = nameController.text.trim();
+          //   String password = passwordController.text.trim();
 
-            //   print("Before encode: " + password);
-            //   print("Before encode: " + userName);
+          //   print("Before encode: " + password);
+          //   print("Before encode: " + userName);
 
-            //   String passwordEncode = loginController.generateMd5(password);
-            //   String userNameEnCode = loginController.generateMd5(userName);
+          //   String passwordEncode = loginController.generateMd5(password);
+          //   String userNameEnCode = loginController.generateMd5(userName);
 
-            //   print("After encode: " + passwordEncode);
-            //   print("After encode: " + userNameEnCode);
+          //   print("After encode: " + passwordEncode);
+          //   print("After encode: " + userNameEnCode);
 
-            Get.offNamed(Routes.country);
-            Get.find<AddressController>().provinceDBProcessed();
-          }
+          Get.offNamed(Routes.country);
+          Get.find<AddressController>().createProvincesToDB();
+          // }
         },
-        // },
         // },
         child: const Text('Login'),
       ),
